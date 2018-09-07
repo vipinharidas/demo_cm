@@ -1,12 +1,12 @@
 # demo_cm
 
-Demonstration for configuration management tools
+## Demonstration for configuration management tools
 
-Ansible
-Puppet
+- Ansible
+- Puppet
 
-Demonstration of EFK
+## Demonstration of EFK
 
-Elasticsearch
-Fluentd
-Kibana
+- Elasticsearch
+- Fluentd
+- Kibana
