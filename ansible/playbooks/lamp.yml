@@ -1,0 +1,5 @@
+---
+- hosts: all:!nagios:!servers:!jenkins
+  roles:
+    - apache2
+    - mariadb

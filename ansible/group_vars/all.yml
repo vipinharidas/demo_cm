@@ -1,0 +1,48 @@
+
+---
+
+## Ansible user
+# Add this if running Ansible as a non-root user
+# would require sudo, e.g. AWS EC2 uses ec-user
+ansible_system_user: <ansible-user>
+
+### Firewall management ###
+# Set to true to deploy firewall rules for nagios server
+manage_firewall: false
+# Set to true to deploy firewall rules for client nrpe
+manage_firewall_client: false
+
+### Nagios Variables ###
+nagios_plugin_path: /usr/lib64/nagios/plugins
+nagios_username: nagiosadmin
+nagios_password: changeme
+nagios_create_guest_user: true
+nagios_ro_username: guest
+nagios_ro_password: guest
+nagios_http_port: 80
+nagios_https_port: 443
+admin_name_01: nagiosadmin
+# change this to your email address if you want notifications
+admin_email_01: nagios@localhost
+# set to true if you want to monitor swap
+# on your nagios server
+nagios_host_monitor_swap: false
+
+### NRPE variables ###
+nrpe_tcp_port: 5666
+# threshold for # of processes
+warning_proc: 900
+critical_proc: 1000
+# threshold for # of logged in users
+warning_users: 15
+critical_users: 30
+
+### services ports ###
+# jenkins
+jenkins_port: 8080
+# set to true if you use a reverse proxy
+# like nginx for jenkins
+jenkins_uses_proxy: true
+# username/pass for reverse proxy auth
+jenkins_user: jenkinsadmin
+jenkins_pass: jenkinspass

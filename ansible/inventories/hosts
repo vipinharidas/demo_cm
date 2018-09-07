@@ -1,0 +1,20 @@
+# NOTE: only put one unique host per category here
+
+#Main nagios server
+
+[nagios]
+
+
+# use this for generic Linux servers
+
+[servers]
+
+# inherits servers checks, includes http
+
+[webservers]
+
+# jenkins server, same as webserver but checks 8080/TCP
+# see group_vars/all.yml and configure values if using
+# a reverse proxy like nginx
+
+[jenkins]

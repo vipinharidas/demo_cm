@@ -1,0 +1,43 @@
+Logging via EFK (Elasticsearch + Fluentd + Kibana) Stack with Docker Compose
+
+By combining these three tools EFK (Elasticsearch + Fluentd + Kibana) we get a scalable, flexible, easy to use log collection and analytics pipeline. In this article, we will set up 4 containers, each includes:
+
+    Apache HTTP Server
+    Fluentd
+    Elasticsearch
+    Kibana
+
+All of httpd’s logs will be ingested into Elasticsearch + Kibana, via Fluentd.
+
+==================== SETUP ====================
+
+1. docker-compose.yml
+
+We will create http, fluentd, elasticsearch ang kibana containers.
+
+2. Prepare Fluentd image with your Config + Plugin
+
+We will now prepare fluentd/Dockerfile to use Fluentd’s official Docker image and additionally install Elasticsearch plugin.
+
+3. Start Containers
+
+$ docker-compose up
+
+inspect docker-compose.yml file
+
+logging section of web container specifies Docker Fluentd Logging Driver as a default container logging driver. All of the logs from web container will be automatically forwarded to host:port specified by fluentd-address.
+
+check to see if 4 containers are running by docker ps command.
+
+4. Generate httpd Access Logs
+
+We'll now access httpd with curl from inside the terminal to generate some access logs.
+
+$ repeat 10 curl http://localhost:80/
+
+5. Confirm Logs from Kibana
+
+Please go to http://<pi>:5601/ with your browser. Then, check "Index contains time-based events" after that you need to set up the index name pattern for Kibana. Please specify "fluentd-*" to Index name or pattern and Time filed name to "@timestamp" press Create button.
+
+6. Then, go to Discover tab to seek for the logs. As you can see, apache logs are properly collected into Elasticsearch + Kibana, via Fluentd.
+
