@@ -18,18 +18,17 @@ Execute this (on master):
 
  vi /etc/puppet/manifests/site.pp 
 
-node 'puppet-agent' {
+class { 'java' :
+  package => 'java-1.8.0-openjdk-devel',
+}
 
-class {  ‘java’ :
- package => ‘java-1.8.0-openjdk-devel’:
- }
- tomcat::install { ‘/opt/tomcat’:
-   source_url => ‘http://redrockdigimark.com/apachemirror/tomcat/tomcat-9/v9.0.0.M13/bin/apache-tomcat-9.0.0.M13.tar.gz’,
- }
- tomcat::instance { ‘default’:
- catalana_home => ‘/opt/tomcat’,
- }
- }
+tomcat::install { '/opt/tomcat':
+  source_url => 'https://www-us.apache.org/dist/tomcat/tomcat-7/v7.0.90/bin/apache-tomcat-7.0.90.tar.gz',
+}
+tomcat::instance { 'default':
+  catalina_home => '/opt/tomcat',
+}
+
 
  Puppet Agent pulls its configuration from the Master periodically (after every 30 minutes). It will evaluate the main manifest and apply the module that specifies Tomcat setup. If you want to try it out immediately, you need to run the following command on every Agent node:
 
